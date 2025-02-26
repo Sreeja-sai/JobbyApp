@@ -52,3 +52,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.invalidText {
+  color: red;
+  font-size: 10px;
+}

@@ -1,9 +1,11 @@
 import {Component} from 'react'
 
+import Cookies from 'js-cookie'
+
 import './index.css'
 
 class Login extends Component {
-  state = {username: '', password: ''}
+  state = {username: '', password: '', invalidText: ''}
 
   changeUsername = event => {
     this.setState({username: event.target.value})
@@ -13,11 +15,20 @@ class Login extends Component {
     this.setState({password: event.target.value})
   }
 
+  validUser = jwtToken => {
+    const {history} = this.props
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
+    history.replace('/')
+  }
+
+  invalidUser = errorMsg => {
+    this.setState({invalidText: errorMsg})
+  }
+
   getUsernamePassword = async event => {
     event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
-    console.log(userDetails)
     const apiUrl = 'https://apis.ccbp.in/login'
     const options = {
       method: 'POST',
@@ -25,9 +36,20 @@ class Login extends Component {
     }
     const response = await fetch(apiUrl, options)
     const data = await response.json()
+    if (response.ok === true) {
+      this.validUser(data.jwt_token)
+    } else {
+      this.invalidUser(data.error_msg)
+    }
   }
 
   render() {
+    const {invalidText} = this.state
+    const {history} = this.props
+    const CookiesResult = Cookies.get('jwt_token')
+    if (CookiesResult !== undefined) {
+      history.replace('/')
+    }
     return (
       <div className="loginContainer">
         <div className="loginCardContainer">
@@ -70,10 +92,12 @@ class Login extends Component {
                 />
               </div>
             </div>
+
             <div className="loginButtonContainer">
               <button type="submit" className="loginBtn">
                 Login
               </button>
+              <p className="invalidText">{invalidText}</p>
             </div>
           </form>
         </div>
