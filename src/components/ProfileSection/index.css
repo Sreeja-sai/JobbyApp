@@ -1,8 +1,34 @@
 .profileSectionContainer {
   /* height: 85vh; */
   color: #ffffff;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .profileFilteration {
-  width: 20vh;
+  width: 20vw;
+  height: 90vh;
+  padding: 20px;
   word-wrap: break-word;
+}
+.successContainer {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 20px 20px 0px 10px;
+  height: 200px;
+  font-family: Roboto;
+}
+.profileIcon {
+  height: 40px;
+}
+.profileName {
+  font-size: 20px;
+  color: #6366f1;
+}
+.profileBio {
+  color: #2c364c;
 }

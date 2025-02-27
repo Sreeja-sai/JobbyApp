@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 
 import Loader from 'react-loader-spinner'
 
+import FilterGroup from '../FilterGroup'
 import './index.css'
 
 const apiConstants = {
@@ -14,7 +15,7 @@ const apiConstants = {
 }
 
 class ProfileSection extends Component {
-  state = {apiStatus: apiConstants.initial}
+  state = {apiStatus: apiConstants.initial, profileData: []}
 
   componentDidMount() {
     this.getProfileApi()
@@ -24,7 +25,6 @@ class ProfileSection extends Component {
     this.setState({apiStatus: apiConstants.inProgress})
     const profileApiUrl = 'https://apis.ccbp.in/profile'
     const jwtToken = Cookies.get('jwt_token')
-    console.log(profileApiUrl)
     const options = {
       method: 'GET',
       headers: {
@@ -32,10 +32,18 @@ class ProfileSection extends Component {
       },
     }
     const response = await fetch(profileApiUrl, options)
-    // const data = await response.json()
-
     if (response.ok === true) {
-      this.setState({apiStatus: apiConstants.success})
+      const data = await response.json()
+      const profileDetails = data.profile_details
+      const updatedProfileData = {
+        profileImageUrl: profileDetails.profile_image_url,
+        name: profileDetails.name,
+        shortBio: profileDetails.short_bio,
+      }
+      this.setState({
+        apiStatus: apiConstants.success,
+        profileData: updatedProfileData,
+      })
     } else {
       this.setState({apiStatus: apiConstants.failure})
     }
@@ -47,7 +55,18 @@ class ProfileSection extends Component {
     </div>
   )
 
-  successView = () => <div>Success</div>
+  successView = () => {
+    const {profileData} = this.state
+    const {name, profileImageUrl, shortBio} = profileData
+
+    return (
+      <div className="successContainer">
+        <img alt="profileIcon" className="profileIcon" src={profileImageUrl} />
+        <h1 className="profileName">{name}</h1>
+        <p className="profileBio">{shortBio}</p>
+      </div>
+    )
+  }
 
   failureView = () => <h1>Failed...........</h1>
 
@@ -66,11 +85,17 @@ class ProfileSection extends Component {
 
   render() {
     const {apiStatus} = this.state
+    const {employementType, salaryRange} = this.props
     return (
       <div className="profileFilteration">
         <div className="profileSectionContainer">
           {this.apiStatusResult(apiStatus)}
         </div>
+        <hr />
+        <FilterGroup
+          employementType={employementType}
+          salaryRange={salaryRange}
+        />
       </div>
     )
   }

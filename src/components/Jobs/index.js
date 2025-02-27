@@ -7,6 +7,9 @@ import ProfileSection from '../ProfileSection'
 import './index.css'
 
 const Jobs = props => {
+  const {typesEmployeList, salaryRangeList} = props
+  console.log(typesEmployeList)
+  console.log(salaryRangeList)
   const cookieResult = Cookies.get('jwt_token')
   const {history} = props
 
@@ -17,7 +20,10 @@ const Jobs = props => {
   return (
     <div className="jobsContainer">
       <JobsHeader />
-      <ProfileSection />
+      <ProfileSection
+        employementType={typesEmployeList}
+        salaryRange={salaryRangeList}
+      />
     </div>
   )
 }
