@@ -1,0 +1,14 @@
+.FilterGroupContainer {
+  color: #ffffff;
+}
+li {
+  list-style-type: none;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}
+ul {
+  margin-right: 100px;
+}
+.salaryLabels {
+  font-size: 13px;
+}

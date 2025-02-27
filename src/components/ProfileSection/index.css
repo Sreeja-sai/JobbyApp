@@ -2,15 +2,17 @@
   /* height: 85vh; */
   color: #ffffff;
   width: 250px;
-  height: 250px;
+  height: 150px;
+  /* margin-bottom: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 45px;
 }
 .profileFilteration {
-  width: 20vw;
+  width: 25vw;
   height: 90vh;
-  padding: 20px;
+  padding: 50px 60px;
   word-wrap: break-word;
 }
 .successContainer {
@@ -31,4 +33,12 @@
 }
 .profileBio {
   color: #2c364c;
+}
+.retryBtn {
+  background-color: #4f46e5;
+  padding: 10px 25px;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
 }

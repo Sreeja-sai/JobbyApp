@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 
 import JobsHeader from '../JobsHeader'
 
@@ -8,12 +8,6 @@ import './index.css'
 
 class Home extends Component {
   render() {
-    const cookieResult = Cookies.get('jwt_token')
-    const {history} = this.props
-
-    if (cookieResult === undefined) {
-      history.replace('/login')
-    }
     return (
       <div className="homeContainer">
         <JobsHeader />

@@ -68,7 +68,13 @@ class ProfileSection extends Component {
     )
   }
 
-  failureView = () => <h1>Failed...........</h1>
+  failureView = () => (
+    <div>
+      <button type="button" onClick={this.getProfileApi} className="retryBtn">
+        Retry
+      </button>
+    </div>
+  )
 
   apiStatusResult = apiStatus => {
     switch (apiStatus) {
@@ -85,7 +91,7 @@ class ProfileSection extends Component {
 
   render() {
     const {apiStatus} = this.state
-    const {employementType, salaryRange} = this.props
+    const {employmentTypesList, salaryRangesList} = this.props
     return (
       <div className="profileFilteration">
         <div className="profileSectionContainer">
@@ -93,8 +99,8 @@ class ProfileSection extends Component {
         </div>
         <hr />
         <FilterGroup
-          employementType={employementType}
-          salaryRange={salaryRange}
+          employmentTypesList={employmentTypesList}
+          salaryRangesList={salaryRangesList}
         />
       </div>
     )

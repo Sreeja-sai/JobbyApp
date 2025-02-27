@@ -8,6 +8,8 @@ import Home from './components/Home'
 
 import Jobs from './components/Jobs'
 
+import ProtectedRoute from './components/ProtectedRoute'
+
 // import JobItemDetails from './components/JobItemDetails'
 
 // import NotFound from './components/NotFound'
@@ -55,13 +57,16 @@ const salaryRangesList = [
 const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
-    <Route exact path="/" component={Home} />
-    <Route
+    <ProtectedRoute exact path="/" component={Home} />
+    <ProtectedRoute
       exact
       path="/jobs"
-      component={Jobs}
-      typesEmployeList={employmentTypesList}
-      salaryRangeList={salaryRangesList}
+      component={() => (
+        <Jobs
+          employmentTypesList={employmentTypesList}
+          salaryRangesList={salaryRangesList}
+        />
+      )}
     />
   </Switch>
 )
