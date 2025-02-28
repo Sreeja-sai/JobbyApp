@@ -72,6 +72,3 @@ const App = () => (
 )
 
 export default App
-
-//     <Route exact path="/jobs/:id" component={JobItemDetails} />
-//     <Route path="/not-found" component={NotFound} />

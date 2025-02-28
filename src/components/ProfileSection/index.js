@@ -4,7 +4,8 @@ import Cookies from 'js-cookie'
 
 import Loader from 'react-loader-spinner'
 
-import FilterGroup from '../FilterGroup'
+// import FilterGroup from '../FilterGroup'
+
 import './index.css'
 
 const apiConstants = {
@@ -91,17 +92,13 @@ class ProfileSection extends Component {
 
   render() {
     const {apiStatus} = this.state
-    const {employmentTypesList, salaryRangesList} = this.props
+    // const {employmentTypesList, salaryRangesList} = this.props
     return (
-      <div className="profileFilteration">
+      <div>
         <div className="profileSectionContainer">
           {this.apiStatusResult(apiStatus)}
         </div>
         <hr />
-        <FilterGroup
-          employmentTypesList={employmentTypesList}
-          salaryRangesList={salaryRangesList}
-        />
       </div>
     )
   }

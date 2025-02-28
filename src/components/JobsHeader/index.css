@@ -1,31 +1,27 @@
-.logoutButton {
-  background-color: #6366f1;
+.searchInput {
+  padding: 12px;
+  background-color: transparent;
+  border-top: 1px solid #7e858e;
+  border-bottom: 1px solid #7e858e;
+  border-left: 1px solid #7e858e;
+  border-right: none;
+  width: 500px;
   color: #ffffff;
-  padding: 7px 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  outline: none;
 }
-.headerContainer {
+.searchInputContainer {
+  width: 70vw;
+  margin-left: 50px;
+  display: flex;
+}
+.searchBtn {
+  height: 42px;
+  padding: 5px 15px 6px 15px;
   background-color: #272727;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 50px;
-  height: 8vh;
-  width: 100vw;
-}
-.headerText {
-  display: flex;
-  align-items: center;
-}
-.homeText,
-.jobText {
   color: #ffffff;
-  margin-right: 20px;
-  cursor: pointer;
-}
-.homePageIcon {
-  height: 50px;
+  border-left: none;
+  border-bottom: 1px solid #7e858e;
+  border-top: 1px solid #7e858e;
+  border-right: 1px solid #7e858e;
   cursor: pointer;
 }

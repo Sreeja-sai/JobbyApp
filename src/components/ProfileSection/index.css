@@ -9,18 +9,14 @@
   align-items: center;
   margin-bottom: 45px;
 }
-.profileFilteration {
-  width: 25vw;
-  height: 90vh;
-  padding: 50px 60px;
-  word-wrap: break-word;
-}
+
 .successContainer {
   background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
   background-size: cover;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding: 20px 20px 0px 10px;
+  width: 300px;
   height: 200px;
   font-family: Roboto;
 }

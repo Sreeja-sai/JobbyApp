@@ -1,39 +1,35 @@
-import Cookies from 'js-cookie'
+// import {Component} from 'react'
 
-import {Link, withRouter} from 'react-router-dom'
+import {BsSearch} from 'react-icons/bs'
 
 import './index.css'
 
 const JobsHeader = props => {
-  const {history} = props
-  const logoutBtn = () => {
-    Cookies.remove('jwt_token')
-    history.replace('/login')
+  const {changeSearchInput, activeSearchInput, searchIconInputClick} = props
+  const changeSearchInputClick = event => {
+    changeSearchInput(event.target.value)
+  }
+  const searchIconBtnClick = () => {
+    searchIconInputClick()
   }
   return (
-    <div className="headerContainer">
-      <div>
-        <img
-          className="homePageIcon"
-          alt="homeIcon"
-          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-        />
-      </div>
-      <div className="headerText">
-        <Link to="/">
-          <p className="homeText">Home</p>
-        </Link>
-        <Link to="/jobs">
-          <p className="jobText">Jobs</p>
-        </Link>
-      </div>
-      <div>
-        <button type="button" onClick={logoutBtn} className="logoutButton">
-          Logout
-        </button>
-      </div>
+    <div className="searchInputContainer">
+      <input
+        type="text"
+        onChange={changeSearchInputClick}
+        className="searchInput"
+        value={activeSearchInput}
+      />
+      <button
+        onClick={searchIconBtnClick}
+        className="searchBtn"
+        type="button"
+        data-testid="searchButton"
+      >
+        <BsSearch className="search-icon" />
+      </button>
     </div>
   )
 }
 
-export default withRouter(JobsHeader)
+export default JobsHeader

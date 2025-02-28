@@ -1,0 +1,13 @@
+.allJobsContainer {
+  display: flex;
+  width: 100vw;
+  height: 90vh;
+  padding: 40px;
+}
+.profileAndFilteration {
+  width: 25vw;
+  padding: 20px 40px;
+}
+.jobsHeaderAndEachJobs {
+  width: 75vw;
+}

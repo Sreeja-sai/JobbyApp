@@ -1,8 +1,10 @@
 // import Cookies from 'js-cookie'
 
-import JobsHeader from '../JobsHeader'
+import Header from '../Header'
 
-import ProfileSection from '../ProfileSection'
+// import ProfileSection from '../ProfileSection'
+
+import AllJobsSection from '../AllJobsSection'
 
 import './index.css'
 
@@ -11,8 +13,8 @@ const Jobs = props => {
 
   return (
     <div className="jobsContainer">
-      <JobsHeader />
-      <ProfileSection
+      <Header />
+      <AllJobsSection
         employmentTypesList={employmentTypesList}
         salaryRangesList={salaryRangesList}
       />
