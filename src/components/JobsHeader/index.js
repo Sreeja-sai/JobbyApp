@@ -14,20 +14,24 @@ const JobsHeader = props => {
   }
   return (
     <div className="searchInputContainer">
-      <input
-        type="text"
-        onChange={changeSearchInputClick}
-        className="searchInput"
-        value={activeSearchInput}
-      />
-      <button
-        onClick={searchIconBtnClick}
-        className="searchBtn"
-        type="button"
-        data-testid="searchButton"
-      >
-        <BsSearch className="search-icon" />
-      </button>
+      <div>
+        <input
+          type="text"
+          onChange={changeSearchInputClick}
+          className="searchInput"
+          value={activeSearchInput}
+        />
+      </div>
+      <div>
+        <button
+          onClick={searchIconBtnClick}
+          className="searchBtn"
+          type="button"
+          data-testid="searchButton"
+        >
+          <BsSearch className="search-icon" />
+        </button>
+      </div>
     </div>
   )
 }

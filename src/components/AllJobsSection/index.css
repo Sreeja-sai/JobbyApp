@@ -1,7 +1,7 @@
 .allJobsContainer {
   display: flex;
   width: 100vw;
-  height: 90vh;
+  /* height: 90vh; */
   padding: 40px;
 }
 .profileAndFilteration {
@@ -10,4 +10,22 @@
 }
 .jobsHeaderAndEachJobs {
   width: 75vw;
+}
+.loader-container {
+  width: 60vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.failureCaseDivContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  color: #ffffff;
+}
+.failureImage {
+  height: 300px;
 }

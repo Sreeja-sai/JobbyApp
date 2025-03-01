@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import Loader from 'react-loader-spinner'
+
 import Cookies from 'js-cookie'
 
 import ProfileSection from '../ProfileSection'
@@ -8,16 +10,32 @@ import FilterGroup from '../FilterGroup'
 
 import JobsHeader from '../JobsHeader'
 
+import EachJobCard from '../EachJobCard'
+
 import './index.css'
 
+const apiConstantsStages = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  inProgress: 'IN_PROGRESS',
+  failure: 'FAILURE',
+}
 class AllJobsSection extends Component {
-  state = {activeEmployeeList: [], activeSalaryRange: '', activeSearchInput: ''}
+  state = {
+    apiStatus: apiConstantsStages.initial,
+    jobsList: [],
+    activeEmployeeList: [],
+    activeSalaryRange: '',
+    activeSearchInput: '',
+  }
 
   componentDidMount() {
     this.getJobsApICall()
   }
 
   getJobsApICall = async () => {
+    this.setState({apiStatus: apiConstantsStages.inProgress})
+
     const {
       activeEmployeeList,
       activeSalaryRange,
@@ -29,9 +47,6 @@ class AllJobsSection extends Component {
     } else {
       employeeTypeValue = activeEmployeeList.join(',')
     }
-    console.log(activeEmployeeList)
-    console.log(activeSalaryRange)
-    console.log(activeSearchInput)
     const jobsApiUrl = `https://apis.ccbp.in/jobs?employment_type=${employeeTypeValue}&minimum_package=${activeSalaryRange}&search=${activeSearchInput}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -41,8 +56,27 @@ class AllJobsSection extends Component {
       },
     }
     const response = await fetch(jobsApiUrl, options)
-    const data = await response.json()
-    console.log(data)
+    if (response.ok) {
+      const data = await response.json()
+      const {jobs} = data
+      console.log(jobs)
+      const updatedData = jobs.map(eachJob => ({
+        companyLogoUrl: eachJob.company_logo_url,
+        employmentType: eachJob.employment_type,
+        id: eachJob.id,
+        jobDescription: eachJob.job_description,
+        location: eachJob.location,
+        packagePerAnnum: eachJob.package_per_annum,
+        rating: eachJob.rating,
+        title: eachJob.title,
+      }))
+      this.setState({
+        jobsList: updatedData,
+        apiStatus: apiConstantsStages.success,
+      })
+    } else {
+      this.setState({apiStatus: apiConstantsStages.failure})
+    }
   }
 
   changeEmployeeList = employeElement => {
@@ -78,14 +112,58 @@ class AllJobsSection extends Component {
     this.getJobsApICall()
   }
 
+  successView = () => {
+    const {jobsList} = this.state
+    return (
+      <div>
+        {jobsList.map(eachJob => (
+          <EachJobCard eachJob={eachJob} />
+        ))}
+      </div>
+    )
+  }
+
+  failureView = () => (
+    <div className="failureCaseDivContainer">
+      <img
+        className="failureImage"
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+      />
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We cannot seem to find the page ypu are looking for</p>
+    </div>
+  )
+
+  inProgressView = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
+  apiResultData = apiStatus => {
+    switch (apiStatus) {
+      case apiConstantsStages.success:
+        return this.successView()
+      case apiConstantsStages.failure:
+        return this.failureView()
+      case apiConstantsStages.inProgress:
+        return this.inProgressView()
+      default:
+        return null
+    }
+  }
+
   render() {
     const {employmentTypesList, salaryRangesList} = this.props
+
     const {
       activeEmployeeList,
       activeSalaryRange,
       activeSearchInput,
+      apiStatus,
+      jobsList,
     } = this.state
-    // console.log(activeSearchInput)
+
     return (
       <div className="allJobsContainer">
         <div className="profileAndFilteration">
@@ -105,6 +183,7 @@ class AllJobsSection extends Component {
             changeSearchInput={this.changeSearchInput}
             searchIconInputClick={this.searchIconClick}
           />
+          {this.apiResultData(apiStatus)}
         </div>
       </div>
     )

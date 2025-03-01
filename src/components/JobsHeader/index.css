@@ -10,7 +10,7 @@
   outline: none;
 }
 .searchInputContainer {
-  width: 70vw;
+  /* width: 70vw; */
   margin-left: 50px;
   display: flex;
 }
