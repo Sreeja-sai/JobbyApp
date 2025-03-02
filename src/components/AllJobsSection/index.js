@@ -60,7 +60,7 @@ class AllJobsSection extends Component {
     if (response.ok) {
       const data = await response.json()
       const {jobs} = data
-      console.log(jobs)
+      // console.log(jobs)
       const updatedData = jobs.map(eachJob => ({
         companyLogoUrl: eachJob.company_logo_url,
         employmentType: eachJob.employment_type,
@@ -116,7 +116,7 @@ class AllJobsSection extends Component {
   successView = () => {
     const {jobsList} = this.state
     const jobsCount = jobsList.length > 0
-    console.log(jobsCount)
+    // console.log(jobsCount)
     if (jobsCount) {
       return (
         <div>
@@ -130,7 +130,7 @@ class AllJobsSection extends Component {
       <div className="noFoundContainer">
         <img
           className="notFoundImage"
-          alt="not found"
+          alt="no jobs"
           src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
         />
         <h1>No Jobs Found</h1>
@@ -148,7 +148,10 @@ class AllJobsSection extends Component {
       />
 
       <h1>Oops! Something Went Wrong</h1>
-      <p>We cannot seem to find the page ypu are looking for</p>
+      <p>We cannot seem to find the page you are looking for</p>
+      <button type="button" onClick={this.getJobsApICall} className="retryBtn">
+        Retry
+      </button>
     </div>
   )
 

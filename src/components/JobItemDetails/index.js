@@ -10,7 +10,11 @@ import {FiExternalLink} from 'react-icons/fi'
 
 import {Component} from 'react'
 
+import SimilarJobData from '../SimilarJobData'
+
 import Header from '../Header'
+
+import SkillsList from '../SkillsList'
 
 import './index.css'
 
@@ -59,7 +63,7 @@ class JobItemDetails extends Component {
       const updatedJobData = {
         id: jobDetails.id,
         title: jobDetails.title,
-        companyLogoUrl: jobDetails.company_logo_url,
+        jobDataCompanyUrl: jobDetails.company_logo_url,
         companyWebsiteUrl: jobDetails.company_website_url,
         rating: jobDetails.rating,
         location: jobDetails.location,
@@ -72,7 +76,7 @@ class JobItemDetails extends Component {
       const updateSimilarData = similarJobs.map(eachSimilarJob => ({
         id: eachSimilarJob.id,
         title: eachSimilarJob.title,
-        companyLogoUrl: eachSimilarJob.company_logo_url,
+        similarJobDataCompanyUrl: eachSimilarJob.company_logo_url,
         location: eachSimilarJob.location,
         employmentType: eachSimilarJob.employment_type,
         similarJobDescription: eachSimilarJob.job_description,
@@ -92,7 +96,7 @@ class JobItemDetails extends Component {
     const {jobsData, similarProductData} = this.state
     const {
       title,
-      companyLogoUrl,
+      jobDataCompanyUrl,
       companyWebsiteUrl,
       rating,
       location,
@@ -113,7 +117,11 @@ class JobItemDetails extends Component {
       <div className="jobsAndSimilarJobsContainer">
         <div className="eachJobDeatilContainer">
           <div className="titleContainer">
-            <img alt="jobIcon" className="jobIcon" src={companyLogoUrl} />
+            <img
+              alt="job details company logo"
+              className="jobIcon"
+              src={jobDataCompanyUrl}
+            />
             <div className="titleRateContainer">
               <h1 className="title">{title}</h1>
               <div className="ratingContainer">
@@ -135,60 +143,33 @@ class JobItemDetails extends Component {
           </div>
           <hr className="hrow" />
           <div className="descVisit">
-            <p className="headings">Description</p>
+            <h1 className="headings">Description</h1>
             <a href={companyWebsiteUrl} className="companyWebsiteUrl">
               Visit <FiExternalLink />
             </a>
           </div>
           <p>{jobDataDescription}</p>
-          <p className="headings">Skills</p>
-          <div className="skillsContainer">
-            {updatedSkills.map(eachJob => (
-              <div className="eachSkill">
-                <img
-                  alt="eachImageIcon"
-                  className="eachImageIcon"
-                  src={eachJob.imageUrl}
-                />
-                <p>{eachJob.name}</p>
-              </div>
+          <h1 className="headings">Skills</h1>
+          <ul className="skillsContainer">
+            {updatedSkills.map(eachSkill => (
+              <SkillsList key={eachSkill.name} eachSkillDetails={eachSkill} />
             ))}
-          </div>
-          <p className="headings">Life at Company</p>
+          </ul>
+          <h1 className="headings">Life at Company</h1>
           <div className="lifeAtCompanyContainer">
             <p>{jobDataDescription}</p>
             <img alt="imageIcon" src={imageUrl} />
           </div>
         </div>
         <h1>Similar Jobs</h1>
-        <div className="allSimilarJobsContainer">
+        <ul className="allSimilarJobsContainer">
           {similarProductData.map(eachSimilarJob => (
-            <div className="similarJobsContainer">
-              <div className="titleContainer">
-                <img
-                  alt="jobIcon"
-                  className="jobIcon"
-                  src={eachSimilarJob.companyLogoUrl}
-                />
-                <div className="titleRateContainer">
-                  <h1 className="title">{eachSimilarJob.title}</h1>
-                  <div className="ratingContainer">
-                    <BsStarFill fill="#fbbf24" />
-                    <p className="rating">{eachSimilarJob.rating}</p>
-                  </div>
-                </div>
-              </div>
-              <p className="headings">Description</p>
-              <p>{eachSimilarJob.similarJobDescription}</p>
-              <div className="locTypeContainer">
-                <IoLocationOutline />
-                <p className="location">{location}</p>
-                <IoMedkit className="medkit" />
-                <p className="empType">{employmentType}</p>
-              </div>
-            </div>
+            <SimilarJobData
+              key={eachSimilarJob.id}
+              eachSimilarJobDetails={eachSimilarJob}
+            />
           ))}
-        </div>
+        </ul>
       </div>
     )
   }

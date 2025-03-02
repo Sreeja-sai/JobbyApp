@@ -12,7 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 
 import JobItemDetails from './components/JobItemDetails'
 
-// import NotFound from './components/NotFound'
+import NotFound from './components/NotFound'
 
 // These are the lists used in the application. You can move them to any component needed.
 const employmentTypesList = [
@@ -69,6 +69,7 @@ const App = () => (
       )}
     />
     <ProtectedRoute exact path="/jobs/:id" component={JobItemDetails} />
+    <Route component={NotFound} />
   </Switch>
 )
 

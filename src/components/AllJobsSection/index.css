@@ -41,3 +41,11 @@
 .notFoundImage {
   height: 300px;
 }
+.retryBtn {
+  background-color: #4f46e5;
+  padding: 10px 25px;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}

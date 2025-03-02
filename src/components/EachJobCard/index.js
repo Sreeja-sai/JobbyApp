@@ -18,7 +18,7 @@ const EachJobCard = props => {
     rating,
     title,
   } = eachJob
-  console.log(id)
+  // console.log(id)
   return (
     <Link to={`/jobs/${id}`}>
       <div className="eachJobContainer">
@@ -45,7 +45,7 @@ const EachJobCard = props => {
         </div>
         <hr className="hrowCard" />
         <div>
-          <p>Description</p>
+          <h1>Description</h1>
           <p>{jobDescription}</p>
         </div>
       </div>

@@ -17,7 +17,7 @@ class Login extends Component {
 
   validUser = jwtToken => {
     const {history} = this.props
-    console.log(history)
+    // console.log(history)
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     history.replace('/')
   }
@@ -56,7 +56,7 @@ class Login extends Component {
         <div className="loginCardContainer">
           <div className="loginLogoContainer">
             <img
-              alt="icon"
+              alt="website logo"
               src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
             />
           </div>

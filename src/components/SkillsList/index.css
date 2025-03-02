@@ -1,0 +1,9 @@
+.eachSkill {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+.eachImageIcon {
+  height: 40px;
+  margin-right: 10px;
+}
