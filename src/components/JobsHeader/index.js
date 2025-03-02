@@ -16,7 +16,7 @@ const JobsHeader = props => {
     <div className="searchInputContainer">
       <div>
         <input
-          type="text"
+          type="search"
           onChange={changeSearchInputClick}
           className="searchInput"
           value={activeSearchInput}

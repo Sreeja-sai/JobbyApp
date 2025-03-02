@@ -17,6 +17,7 @@ class Login extends Component {
 
   validUser = jwtToken => {
     const {history} = this.props
+    console.log(history)
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     history.replace('/')
   }

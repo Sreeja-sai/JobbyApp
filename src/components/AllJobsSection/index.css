@@ -29,3 +29,15 @@
 .failureImage {
   height: 300px;
 }
+.noFoundContainer {
+  color: #ffffff;
+  width: 60vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.notFoundImage {
+  height: 300px;
+}

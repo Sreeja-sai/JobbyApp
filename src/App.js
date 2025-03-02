@@ -10,7 +10,7 @@ import Jobs from './components/Jobs'
 
 import ProtectedRoute from './components/ProtectedRoute'
 
-// import JobItemDetails from './components/JobItemDetails'
+import JobItemDetails from './components/JobItemDetails'
 
 // import NotFound from './components/NotFound'
 
@@ -68,6 +68,7 @@ const App = () => (
         />
       )}
     />
+    <ProtectedRoute exact path="/jobs/:id" component={JobItemDetails} />
   </Switch>
 )
 

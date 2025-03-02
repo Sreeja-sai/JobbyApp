@@ -12,6 +12,8 @@ import JobsHeader from '../JobsHeader'
 
 import EachJobCard from '../EachJobCard'
 
+// import Header from '../Header'
+
 import './index.css'
 
 const apiConstantsStages = {
@@ -35,7 +37,6 @@ class AllJobsSection extends Component {
 
   getJobsApICall = async () => {
     this.setState({apiStatus: apiConstantsStages.inProgress})
-
     const {
       activeEmployeeList,
       activeSalaryRange,
@@ -114,11 +115,26 @@ class AllJobsSection extends Component {
 
   successView = () => {
     const {jobsList} = this.state
+    const jobsCount = jobsList.length > 0
+    console.log(jobsCount)
+    if (jobsCount) {
+      return (
+        <div>
+          {jobsList.map(eachJob => (
+            <EachJobCard eachJob={eachJob} />
+          ))}
+        </div>
+      )
+    }
     return (
-      <div>
-        {jobsList.map(eachJob => (
-          <EachJobCard eachJob={eachJob} />
-        ))}
+      <div className="noFoundContainer">
+        <img
+          className="notFoundImage"
+          alt="not found"
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        />
+        <h1>No Jobs Found</h1>
+        <p>We could not find any jobs. Try other filters.</p>
       </div>
     )
   }
@@ -127,8 +143,10 @@ class AllJobsSection extends Component {
     <div className="failureCaseDivContainer">
       <img
         className="failureImage"
+        alt="failure view"
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
       />
+
       <h1>Oops! Something Went Wrong</h1>
       <p>We cannot seem to find the page ypu are looking for</p>
     </div>
@@ -161,7 +179,6 @@ class AllJobsSection extends Component {
       activeSalaryRange,
       activeSearchInput,
       apiStatus,
-      jobsList,
     } = this.state
 
     return (
