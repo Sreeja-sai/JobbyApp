@@ -18,7 +18,7 @@ const SimilarJobData = props => {
     <li className="similarJobsContainer">
       <div className="titleContainer">
         <img
-          alt="job details company logo"
+          alt="similar job company logo"
           className="jobIcon"
           src={similarJobDataCompanyUrl}
         />

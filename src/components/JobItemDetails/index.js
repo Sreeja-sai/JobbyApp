@@ -106,7 +106,7 @@ class JobItemDetails extends Component {
       employmentType,
       lifeAtCompany,
     } = jobsData
-    const {imageUrl} = lifeAtCompany
+    const {imageUrl, description} = lifeAtCompany
 
     const updatedSkills = skills.map(eachSkill => ({
       name: eachSkill.name,
@@ -157,8 +157,8 @@ class JobItemDetails extends Component {
           </ul>
           <h1 className="headings">Life at Company</h1>
           <div className="lifeAtCompanyContainer">
-            <p>{jobDataDescription}</p>
-            <img alt="imageIcon" src={imageUrl} />
+            <p>{description}</p>
+            <img alt="life at company" src={imageUrl} />
           </div>
         </div>
         <h1>Similar Jobs</h1>

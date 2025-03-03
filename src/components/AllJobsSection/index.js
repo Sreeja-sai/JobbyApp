@@ -121,7 +121,7 @@ class AllJobsSection extends Component {
       return (
         <div>
           {jobsList.map(eachJob => (
-            <EachJobCard eachJob={eachJob} />
+            <EachJobCard key={eachJob.id} eachJob={eachJob} />
           ))}
         </div>
       )

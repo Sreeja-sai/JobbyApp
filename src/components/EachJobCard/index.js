@@ -23,7 +23,7 @@ const EachJobCard = props => {
     <Link to={`/jobs/${id}`}>
       <div className="eachJobContainer">
         <div className="titleContainer">
-          <img className="jobIcon" alt="eachJobCardIcon" src={companyLogoUrl} />
+          <img className="jobIcon" alt="company logo" src={companyLogoUrl} />
           <div className="titleRateContainer">
             <h1 className="title">{title}</h1>
             <div className="ratingContainer">

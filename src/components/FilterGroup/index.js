@@ -11,7 +11,7 @@ const FilterGroup = props => {
       const {changeEmployeeList} = props
       const changeEmployeeType = event => changeEmployeeList(event.target)
       return (
-        <li>
+        <li key={eachEmployeType.employmentTypeId}>
           <input
             type="checkbox"
             onChange={changeEmployeeType}
@@ -32,7 +32,7 @@ const FilterGroup = props => {
       const changeSalaryClick = () =>
         changeSalaryRangeId(eachSalaryItem.salaryRangeId)
       return (
-        <li>
+        <li key={eachSalaryItem.salaryRangeId}>
           <input
             onChange={changeSalaryClick}
             type="radio"

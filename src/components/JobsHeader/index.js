@@ -13,16 +13,16 @@ const JobsHeader = props => {
     searchIconInputClick()
   }
   return (
-    <div className="searchInputContainer">
-      <div>
+    <ul className="searchInputContainer">
+      <li>
         <input
           type="search"
           onChange={changeSearchInputClick}
           className="searchInput"
           value={activeSearchInput}
         />
-      </div>
-      <div>
+      </li>
+      <li>
         <button
           onClick={searchIconBtnClick}
           className="searchBtn"
@@ -31,8 +31,8 @@ const JobsHeader = props => {
         >
           <BsSearch className="search-icon" />
         </button>
-      </div>
-    </div>
+      </li>
+    </ul>
   )
 }
 
